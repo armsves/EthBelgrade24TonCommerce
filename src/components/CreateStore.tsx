@@ -15,7 +15,7 @@ export function CreateStore() {
       try {
         const response = await fetch(`http://localhost:3000/stores/wallet/${wallet}`);
         const data = await response.json();
-        console.log('data: ',data);
+        console.log('data: ', data);
         if (data) {
           setStore(data);
         }
@@ -63,7 +63,6 @@ export function CreateStore() {
       image: selectedFile,
     };
 
-    // Send data to your backend
     try {
       const response = await fetch('http://localhost:3000/stores/create', {
         method: 'POST',
@@ -84,6 +83,22 @@ export function CreateStore() {
     }
   };
 
+  const toggleActive = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/stores/${store.id}/toggle-active`, {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        throw new Error('Response is not OK');
+      }
+
+      const updatedStore = await response.json();
+      setStore(updatedStore);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <div className="Container">
@@ -94,8 +109,10 @@ export function CreateStore() {
           {store ? (
             <div>
               <h4>{store.name}</h4>
+              <button onClick={toggleActive}>{store.active ? 'Deactivate' : 'Activate'}</button>
               <p>{store.description}</p>
-              <img src={store.image} alt={store.name} />
+              <img src={store.image} height="100px" alt={store.name} />
+
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

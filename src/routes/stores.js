@@ -21,10 +21,27 @@ router.post('/create', async (req, res) => {
   }
 });
 
+router.post('/:id/toggle-active', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const store = await Store.findByPk(id);
+  
+      if (!store) {
+        return res.status(404).json({ error: 'Store not found' });
+      }
+  
+      store.active = !store.active;
+      await store.save();
+  
+      res.json(store);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
 router.get('/wallet/:wallet', async (req, res) => {
     try {
       const { wallet } = req.params;
-      console.log(wallet);
       const store = await Store.findOne({ owner_address: wallet });
   
       if (!store) {
