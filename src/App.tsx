@@ -1,6 +1,8 @@
 import "./App.css";
 import { TonConnectButton } from "@tonconnect/ui-react";
 import { Counter } from "./components/Counter";
+import { CreateStore } from "./components/CreateStore";
+import { BrowseStores } from "./components/BrowseStores";
 import { Jetton } from "./components/Jetton";
 import { TransferTon } from "./components/TransferTon";
 import styled from "styled-components";
@@ -8,6 +10,7 @@ import { Button, FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { CHAIN } from "@tonconnect/protocol";
 import "@twa-dev/sdk";
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 
 const StyledApp = styled.div`
   background-color: #e8e8e8;
@@ -27,28 +30,48 @@ const AppContainer = styled.div`
 `;
 
 function App() {
-  const { network } = useTonConnect();
+  const { network, connected } = useTonConnect();
 
+  /*
+              <Counter />
+              <TransferTon />
+              <Jetton />
+  */
   return (
-    <StyledApp>
-      <AppContainer>
-        <FlexBoxCol>
-          <FlexBoxRow>
-            <TonConnectButton />
-            <Button>
-              {network
-                ? network === CHAIN.MAINNET
-                  ? "mainnet"
-                  : "testnet"
-                : "N/A"}
-            </Button>
-          </FlexBoxRow>
-          <Counter />
-          <TransferTon />
-          <Jetton />
-        </FlexBoxCol>
-      </AppContainer>
-    </StyledApp>
+    <Router>
+      <StyledApp>
+        <AppContainer>
+          <FlexBoxCol>
+            <FlexBoxRow>
+              <TonConnectButton />
+              <Button>
+                {network
+                  ? network === CHAIN.MAINNET
+                    ? "mainnet"
+                    : "testnet"
+                  : "N/A"}
+              </Button>
+              {connected ? (
+                <>
+                  <Link to="/CreateStore"><Button>Create Store</Button></Link>
+                  <Link to="/BrowseStores"><Button>Browse Stores</Button></Link>
+                </>
+              ) : (
+                <>
+                  <h3>Connect to TON</h3>
+                </>
+              )}
+            </FlexBoxRow>
+            {connected && (
+              <Routes>
+                <Route path="/CreateStore" element={<CreateStore />} />
+                <Route path="/BrowseStores" element={<BrowseStores />} />
+              </Routes>
+            )}
+          </FlexBoxCol>
+        </AppContainer>
+      </StyledApp>
+    </Router>
   );
 }
 

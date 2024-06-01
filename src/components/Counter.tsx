@@ -11,7 +11,7 @@ import {
 } from "./styled/styled";
 
 export function Counter() {
-  const { connected } = useTonConnect();
+  const { connected, wallet, network, sender } = useTonConnect();
   const { value, address, sendIncrement } = useCounterContract();
 
   return (
@@ -20,7 +20,9 @@ export function Counter() {
 
       <Card>
         <FlexBoxCol>
-          <h3>Counter</h3>
+          <h3>Counter</h3> 
+          <Ellipsis>{wallet && wallet}</Ellipsis>
+          <Ellipsis>{network && network}</Ellipsis>
           <FlexBoxRow>
             <b>Address</b>
             <Ellipsis>{address}</Ellipsis>

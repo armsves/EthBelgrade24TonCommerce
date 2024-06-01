@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Counter from "../contracts/counter";
 import { useTonClient } from "./useTonClient";
 import { useAsyncInitialize } from "./useAsyncInitialize";
 import { useTonConnect } from "./useTonConnect";
-import { Address, OpenedContract } from "ton-core";
+import { Address, fromNano, OpenedContract } from "ton-core";
 import { useQuery } from "@tanstack/react-query";
 import { CHAIN } from "@tonconnect/protocol";
 
 export function useCounterContract() {
   const { client } = useTonClient();
-  const { sender, network } = useTonConnect();
+  const { sender, network, wallet } = useTonConnect();
 
   const counterContract = useAsyncInitialize(async () => {
     if (!client) return;
@@ -32,11 +32,25 @@ export function useCounterContract() {
     { refetchInterval: 3000 }
   );
 
+  const balancResult = useQuery(
+    ["balance"],
+    async () => {
+      if (!client || !wallet) return null;
+      //console.log("wallet = ", wallet)
+      const balance = await client.getBalance(Address.parse(wallet))
+      console.log("balance = ", balance)
+
+    return fromNano(balance)
+    }, 
+    { refetchInterval: 8000 }
+  );
+
   return {
     value: isFetching ? null : data,
     address: counterContract?.address.toString(),
     sendIncrement: () => {
       return counterContract?.sendIncrement(sender);
     },
+    balance: balancResult.data
   };
 }
