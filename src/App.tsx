@@ -3,6 +3,9 @@ import { TonConnectButton } from "@tonconnect/ui-react";
 import { Counter } from "./components/Counter";
 import { CreateStore } from "./components/CreateStore";
 import { BrowseStores } from "./components/BrowseStores";
+import { PurchaseHistory } from "./components/PurchaseHistory";
+import { SalesHistory } from "./components/SalesHistory";
+import Stores from './components/Stores';
 import { Jetton } from "./components/Jetton";
 import { TransferTon } from "./components/TransferTon";
 import styled from "styled-components";
@@ -11,6 +14,7 @@ import { useTonConnect } from "./hooks/useTonConnect";
 import { CHAIN } from "@tonconnect/protocol";
 import "@twa-dev/sdk";
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+
 
 const StyledApp = styled.div`
   background-color: #e8e8e8;
@@ -55,6 +59,8 @@ function App() {
                 <>
                   <Link to="/CreateStore"><Button>Create Store</Button></Link>
                   <Link to="/BrowseStores"><Button>Browse Stores</Button></Link>
+                  <Link to="/PurchaseHistory"><Button>Purchase History</Button></Link>
+                  <Link to="/SalesHistory"><Button>Sales History</Button></Link>
                 </>
               ) : (
                 <>
@@ -66,6 +72,9 @@ function App() {
               <Routes>
                 <Route path="/CreateStore" element={<CreateStore />} />
                 <Route path="/BrowseStores" element={<BrowseStores />} />
+                <Route path="/stores/:storeId" element={<Stores />} />
+                <Route path="/PurchaseHistory" element={<PurchaseHistory />} />
+                <Route path="/SalesHistory" element={<SalesHistory />} />
               </Routes>
             )}
           </FlexBoxCol>

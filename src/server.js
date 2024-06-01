@@ -8,6 +8,7 @@ import sequelize from './database.js'; // Import sequelize
 import storeRoutes from './routes/stores.js'; // Import store routes
 import productRoutes from './routes/products.js'; // Import product routes
 import purchaseHistoryRoutes from './routes/purchaseHistory.js'; // Import purchase history routes
+import './models/associations.js';
 
 const app = express();
 

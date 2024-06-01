@@ -6,12 +6,42 @@ import { useTonWallet, TonConnectButton, useTonConnectUI } from "@tonconnect/ui-
 import { Card, FlexBoxCol, FlexBoxRow, Button, Input } from "./styled/styled";
 import { useCounterContract } from "../hooks/useCounterContract";
 import TonWeb from "tonweb";
+import { Link } from 'react-router-dom';
 
 export function BrowseStores() {
+  const { wallet } = useTonConnect();
+  const [stores, setStores] = useState<Stores[] | null>(null);
+
+  interface Stores {
+    id: number;
+    name: string;
+    description: string;
+    image: string;
+    active: boolean;
+    // add other properties here as needed
+  }
+
+  useEffect(() => {
+    const fetchStores = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/stores/`);
+        const data: Stores[] = await response.json();
+        console.log('data: ', data);
+        if (data) {
+          setStores(data);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchStores();
+  }, [wallet]);
+
   const { sender, connected } = useTonConnect();
   const [tonConnectUI] = useTonConnectUI();
 
-  const wallet = useTonWallet();
+  //const wallet = useTonWallet();
   const { balance } = useCounterContract()
   //const [tonAmount, setTonAmount] = useState("0.01");
   const tonAmount = "1.5";
@@ -69,8 +99,6 @@ export function BrowseStores() {
 
   const uploadFile = async () => {
     try {
-      // ... existing code ...
-
       // Check if a file is selected
       if (selectedFile) {
         // Create a FormData object
@@ -100,12 +128,8 @@ export function BrowseStores() {
       console.log("error = ", e)
     }
   };
+  /*
 
-  return (
-    <div className="Container">
-      <TonConnectButton style={{ marginLeft: 10 }} />
-      <Card>
-        <FlexBoxCol>
           <h3>Buy Item</h3>
           Balance: {balance}
           <FlexBoxRow>
@@ -134,6 +158,23 @@ export function BrowseStores() {
               <img src={`/${fileName}`} width="100px" alt="Uploaded file" />
             </FlexBoxRow>
           )}
+  */
+
+  return (
+    <div className="Container">
+      <TonConnectButton style={{ marginLeft: 10 }} />
+      <Card>
+        <FlexBoxCol>
+          <div className="Container">
+            {stores && stores.map((store) => (
+              <div key={store.id}>
+                <h2>{store.name}</h2>
+                <img src={`${store.image}`} height="100px" alt={store.name} />
+                <p>{store.description}</p>
+                <Link to={`/stores/${store.id}`}>View Products</Link>
+              </div>
+            ))}
+          </div>
         </FlexBoxCol>
       </Card>
     </div>

@@ -1,10 +1,7 @@
-// models/store.js
-
 import { DataTypes } from 'sequelize';
 import sequelize from '../database.js';
 
 const Store = sequelize.define('Store', {
-
   name: {
     type: DataTypes.STRING,
     allowNull: false
@@ -17,5 +14,6 @@ const Store = sequelize.define('Store', {
     defaultValue: true
   }
 });
+
 
 export default Store;
