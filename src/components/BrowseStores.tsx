@@ -59,7 +59,7 @@ export function BrowseStores() {
     }, 10000);
   }
   */
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState('');
   const [fileUploadSuccess, setFileUploadSuccess] = useState(false);
 
@@ -131,7 +131,7 @@ export function BrowseStores() {
           {fileUploadSuccess && (
             <FlexBoxRow className="py-6">
               <p>File uploaded successfully!</p>
-              <img src={`/${fileName}`} width="100px" alt="Uploaded file" />            
+              <img src={`/${fileName}`} width="100px" alt="Uploaded file" />
             </FlexBoxRow>
           )}
         </FlexBoxCol>
