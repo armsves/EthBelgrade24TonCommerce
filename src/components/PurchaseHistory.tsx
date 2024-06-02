@@ -20,7 +20,12 @@ export function PurchaseHistory() {
 
     const fetchPurchases = async (): Promise<Purchase[]> => {
         try {
-            const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/purchase-history/${wallet}`);
+            const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/purchase-history/${wallet}`, {
+                method: "GET",
+                headers: new Headers({
+                    "ngrok-skip-browser-warning": "69420",
+                }),
+            });
             const data: Purchase[] = await response.json();
             console.log('data: ', data);
             return data;
