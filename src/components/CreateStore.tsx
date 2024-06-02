@@ -99,20 +99,21 @@ export function CreateStore() {
       if (selectedFile) {
         const formData = new FormData();
         formData.append('file', selectedFile);
-        /*
+        
         const response = await fetch('http://localhost:3000/upload', {
           method: 'POST',
           body: formData,
         });
-        */
+        
 
+        /*
         const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/upload`, {
           method: "POST",
           headers: new Headers({
             "ngrok-skip-browser-warning": "69420", 'Content-Type': 'application/json',
           }),
           body: formData,
-        });
+        });*/
 
         if (!response.ok) {
           throw new Error('File upload failed');
@@ -227,21 +228,21 @@ export function CreateStore() {
 
         const formData = new FormData();
         formData.append('file', selectedFile2);
-        /*
+        
         const response = await fetch('http://localhost:3000/upload', {
           method: 'POST',
           body: formData,
         });
         console.log('response', response)
-        */
-
+        
+        /*
         const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/upload`, {
           method: "POST",
           headers: new Headers({
             "ngrok-skip-browser-warning": "69420", 'Content-Type': 'application/json',
           }),
           body: formData,
-        });
+        });*/
 
         if (!response.ok) {
           throw new Error('File upload failed');

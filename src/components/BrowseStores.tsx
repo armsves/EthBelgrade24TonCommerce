@@ -115,20 +115,21 @@ export function BrowseStores() {
         // Add the file to the FormData object
         formData.append('file', selectedFile);
 
-        /*
+        
         // Send a POST request to the /upload route on your server
         const response = await fetch('http://localhost:3000/upload', {
           method: 'POST',
           body: formData,
-        });*/
+        });
 
+        /*
         const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/upload`, {
           method: "POST",
           headers: new Headers({
             "ngrok-skip-browser-warning": "69420", 'Content-Type': 'application/json',
           }),
           body: formData,
-        });
+        });*/
 
         if (!response.ok) {
           throw new Error('File upload failed');
