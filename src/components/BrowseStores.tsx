@@ -24,7 +24,15 @@ export function BrowseStores() {
   useEffect(() => {
     const fetchStores = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/stores/`);
+        //const response = await fetch(`http://localhost:3000/stores/`);
+
+        const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/stores/`, {
+          method: "GET",
+          headers: new Headers({
+              "ngrok-skip-browser-warning": "69420",
+          }),
+      });
+
         const data: Stores[] = await response.json();
         console.log('data: ', data);
         if (data) {
@@ -107,9 +115,18 @@ export function BrowseStores() {
         // Add the file to the FormData object
         formData.append('file', selectedFile);
 
+        /*
         // Send a POST request to the /upload route on your server
         const response = await fetch('http://localhost:3000/upload', {
           method: 'POST',
+          body: formData,
+        });*/
+
+        const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/upload`, {
+          method: "POST",
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "69420", 'Content-Type': 'application/json',
+          }),
           body: formData,
         });
 

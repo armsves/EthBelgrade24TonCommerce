@@ -35,7 +35,15 @@ export function CreateStore() {
   const fetchProducts = async () => {
     try {
       if (store) {
-        const response = await fetch(`http://localhost:3000/products/stores/${store.id}`);
+        //const response = await fetch(`http://localhost:3000/products/stores/${store.id}`);
+        
+        const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/products/stores/${store.id}`, {
+          method: "GET",
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "69420",
+          }),
+        });
+
         const data: Product[] = await response.json();
         console.log('data: ', data);
         if (data) {
@@ -56,7 +64,15 @@ export function CreateStore() {
   useEffect(() => {
     const fetchStore = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/stores/wallet/${wallet}`);
+        //const response = await fetch(`http://localhost:3000/stores/wallet/${wallet}`);
+
+        const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/stores/wallet/${wallet}`, {
+          method: "GET",
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "69420",
+          }),
+        });
+
         const data: Store = await response.json();
         console.log('data: ', data);
         if (data) {
@@ -83,8 +99,18 @@ export function CreateStore() {
       if (selectedFile) {
         const formData = new FormData();
         formData.append('file', selectedFile);
+        /*
         const response = await fetch('http://localhost:3000/upload', {
           method: 'POST',
+          body: formData,
+        });
+        */
+
+        const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/upload`, {
+          method: "POST",
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "69420", 'Content-Type': 'application/json',
+          }),
           body: formData,
         });
 
@@ -111,11 +137,21 @@ export function CreateStore() {
     };
 
     try {
+      /*
       const response = await fetch('http://localhost:3000/stores/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(data),
+      });
+      */
+
+      const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/stores/create`, {
+        method: "POST",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420", 'Content-Type': 'application/json',
+        }),
         body: JSON.stringify(data),
       });
 
@@ -191,22 +227,42 @@ export function CreateStore() {
 
         const formData = new FormData();
         formData.append('file', selectedFile2);
+        /*
         const response = await fetch('http://localhost:3000/upload', {
           method: 'POST',
           body: formData,
         });
         console.log('response', response)
+        */
+
+        const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/upload`, {
+          method: "POST",
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "69420", 'Content-Type': 'application/json',
+          }),
+          body: formData,
+        });
 
         if (!response.ok) {
           throw new Error('File upload failed');
         }
 
         // Send a POST request to your server to create a product
+        /*
         const response2 = await fetch('http://localhost:3000/products/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify(data),
+        });
+        */
+
+        const response2 = await fetch(`https://0726-87-116-161-246.ngrok-free.app/products/create`, {
+          method: "POST",
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "69420", 'Content-Type': 'application/json',
+          }),
           body: JSON.stringify(data),
         });
 
@@ -221,8 +277,15 @@ export function CreateStore() {
 
   const deleteProduct = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${id}`, {
-        method: 'DELETE',
+      //const response = await fetch(`http://localhost:3000/products/${id}`, {
+      //  method: 'DELETE',
+      //});
+
+      const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/purchase-history/products/${id}`, {
+        method: "DELETE",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420",
+        }),
       });
 
       if (!response.ok) {

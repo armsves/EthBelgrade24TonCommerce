@@ -24,7 +24,13 @@ export function SalesHistory() {
 
     const fetchSales = async (): Promise<Sale[]> => {
         try {
-            const response = await fetch(`http://localhost:3000/purchase-history/sales/${wallet}`);
+            //const response = await fetch(`http://localhost:3000/purchase-history/sales/${wallet}`);
+            const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/purchase-history/sales/${wallet}`, {
+                method: "GET",
+                headers: new Headers({
+                    "ngrok-skip-browser-warning": "69420",
+                }),
+            });
             const data: Sale[] = await response.json();
             console.log('data: ', data);
             return data;

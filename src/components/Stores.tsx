@@ -32,13 +32,25 @@ const Stores = () => {
 
     const fetchStoreAndProducts = async (storeId: string | undefined): Promise<{ store: Store | null, products: Product[] }> => {
         try {
-            const storeResponse = await fetch(`http://localhost:3000/stores/${storeId}`);
+            //const storeResponse = await fetch(`http://localhost:3000/stores/${storeId}`);
+            const storeResponse = await fetch(`https://0726-87-116-161-246.ngrok-free.app/stores/${storeId}`, {
+                method: "GET",
+                headers: new Headers({
+                    "ngrok-skip-browser-warning": "69420",
+                }),
+            });
             const storeData: Store = await storeResponse.json();
 
             console.log('storeData: ', storeData);
             console.log('storeId: ', storeId);
 
-            const productsResponse = await fetch(`http://localhost:3000/products/stores/${storeId}`);
+            //const productsResponse = await fetch(`http://localhost:3000/products/stores/${storeId}`);
+            const productsResponse = await fetch(`https://0726-87-116-161-246.ngrok-free.app/products/stores/${storeId}`, {
+                method: "GET",
+                headers: new Headers({
+                    "ngrok-skip-browser-warning": "69420",
+                }),
+            });
             const productsData: Product[] = await productsResponse.json();
 
             console.log('productsData: ', productsData);
