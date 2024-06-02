@@ -16,7 +16,6 @@ export function PurchaseHistory() {
         qty: number;
         price: number;
         createdAt: string;
-        // add other properties here as needed
     }
 
     const fetchPurchases = async (): Promise<Purchase[]> => {
@@ -35,22 +34,14 @@ export function PurchaseHistory() {
         fetchPurchases().then(setPurchases);
     }, []);
 
-    // Render the purchases
     return (
         <FlexBoxCol>
             <h1>Purchase History</h1>
-            <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between'
-            }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                 {purchases.map((purchase) => (
-                    <Card key={purchase.id} style={{
-                        flex: '0 1 calc(25% - 1em)',
-                        margin: '0.5em'
-                    }}>
+                    <Card key={purchase.id} style={{ flex: '0 1 calc(25% - 1em)', margin: '0.5em' }}>
                         <h2>Product ID: {purchase.product_id}</h2>
-                        <img src={`${purchase.image}`} height="100px" alt={purchase.product_name} />
+                        <img src={`/EthBelgrade24TonCommerce/${purchase.image}`} height="100px" alt={purchase.product_name} />
                         <p>Product Name: {purchase.product_name}</p>
                         <p>Quantity: {purchase.qty}</p>
                         <p>Price: {purchase.price}</p>

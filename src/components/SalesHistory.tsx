@@ -20,7 +20,6 @@ export function SalesHistory() {
         qty: number;
         price: number;
         createdAt: string;
-        // add other properties here as needed
     }
 
     const fetchSales = async (): Promise<Sale[]> => {
@@ -39,7 +38,6 @@ export function SalesHistory() {
         fetchSales().then(setSales);
     }, []);
 
-    // Render the sales
     return (
         <FlexBoxCol>
             <h1>Sales History</h1>
@@ -54,7 +52,7 @@ export function SalesHistory() {
                         margin: '0.5em'
                     }}>
                     <h2>Product ID: {sale.product_id}</h2>
-                    <img src={`${sale.product.image}`} height="100px" alt={sale.product_name} />
+                    <img src={`/EthBelgrade24TonCommerce/${sale.product.image}`} height="100px" alt={sale.product_name} />
                     <p>Product Name: {sale.product_name}</p>
                     <p>Quantity: {sale.qty}</p>
                     <p>Purchase Date: {sale.createdAt}</p>
@@ -70,5 +68,3 @@ export function SalesHistory() {
         </FlexBoxCol>
     );
 };
-
-export default SalesHistory;

@@ -121,7 +121,7 @@ const Stores = () => {
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                 {products.map(product => (
                     <div key={product.id} style={{ flex: '1 0 21%', margin: '1%', border: '1px solid #ccc', padding: '1em' }}>
-                        <img src={`../${product.image}`} height="100px" alt={product.name} />
+                        <img src={`/EthBelgrade24TonCommerce/${product.image}`} height="100px" alt={product.name} />
                         <h2>Name: {product.name}</h2>
                         <p>Description: {product.description}</p>
                         <p>Price: {product.price}</p>
