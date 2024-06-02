@@ -18,7 +18,6 @@ const Stores = () => {
         description: string;
         image: string;
         active: boolean;
-        // add other properties here as needed
     }
 
     interface Product {
@@ -87,7 +86,6 @@ const Stores = () => {
                 confirmation: result.boc
             };
 
-            // Send a POST request to your server to create a product
             const response2 = await fetch('http://localhost:3000/purchase-history/create', {
                 method: 'POST',
                 headers: {
@@ -99,7 +97,6 @@ const Stores = () => {
             console.log("response2 = ", response2);
 
             const response3 = await fetch(`http://localhost:3000/products/${id}/decrease`, { method: 'POST', });
-
             console.log("response3 = ", response3);
             //console.log(Cell.fromBoc(result.boc));
             fetchStoreAndProducts(storeId).then((data) => {

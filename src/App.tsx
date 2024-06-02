@@ -48,25 +48,27 @@ function App() {
           <FlexBoxCol>
             <FlexBoxRow>
               <TonConnectButton />
-              <Button>
-                {network
-                  ? network === CHAIN.MAINNET
-                    ? "mainnet"
-                    : "testnet"
-                  : "N/A"}
-              </Button>
-              {connected ? (
-                <>
-                  <Link to="/CreateStore"><Button>Create Store</Button></Link>
-                  <Link to="/BrowseStores"><Button>Browse Stores</Button></Link>
-                  <Link to="/PurchaseHistory"><Button>Purchase History</Button></Link>
-                  <Link to="/SalesHistory"><Button>Sales History</Button></Link>
-                </>
-              ) : (
-                <>
-                  <h3>Connect to TON</h3>
-                </>
-              )}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                <Button>
+                  {network
+                    ? network === CHAIN.MAINNET
+                      ? "mainnet"
+                      : "testnet"
+                    : "N/A"}
+                </Button>
+                {connected ? (
+                  <>
+                    <Link to="/CreateStore"><Button>Create Store</Button></Link>
+                    <Link to="/BrowseStores"><Button>Browse Stores</Button></Link>
+                    <Link to="/PurchaseHistory"><Button>Purchase History</Button></Link>
+                    <Link to="/SalesHistory"><Button>Sales History</Button></Link>
+                  </>
+                ) : (
+                  <>
+                    <h3>Connect to TON</h3>
+                  </>
+                )}
+              </div>
             </FlexBoxRow>
             {connected && (
               <Routes>
