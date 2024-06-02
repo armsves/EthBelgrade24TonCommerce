@@ -24,7 +24,7 @@ export function SalesHistory() {
 
     const fetchSales = async (): Promise<Sale[]> => {
         try {
-            const response = await fetch(`https://eth-belgrade24-ton-commerce.vercel.app/purchase-history/sales/${wallet}`);
+            const response = await fetch(`http://localhost:3000/purchase-history/sales/${wallet}`);
             const data: Sale[] = await response.json();
             console.log('data: ', data);
             return data;

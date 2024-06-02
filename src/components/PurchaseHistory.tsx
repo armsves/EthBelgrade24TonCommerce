@@ -20,7 +20,7 @@ export function PurchaseHistory() {
 
     const fetchPurchases = async (): Promise<Purchase[]> => {
         try {
-            const response = await fetch(`http://eth-belgrade24-ton-commerce.vercel.app:3000/purchase-history/${wallet}`);
+            const response = await fetch(`https://0726-87-116-161-246.ngrok-free.app/purchase-history/${wallet}`);
             const data: Purchase[] = await response.json();
             console.log('data: ', data);
             return data;
