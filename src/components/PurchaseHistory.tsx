@@ -20,7 +20,7 @@ export function PurchaseHistory() {
 
     const fetchPurchases = async (): Promise<Purchase[]> => {
         try {
-            const response = await fetch(`${process.env.NGROK_URL}/purchase-history/${wallet}`, {
+            const response = await fetch(`${env.NGROK_URL}/purchase-history/${wallet}`, {
                 method: "GET",
                 headers: new Headers({
                     "ngrok-skip-browser-warning": "69420",
