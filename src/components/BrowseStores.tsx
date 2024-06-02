@@ -169,8 +169,6 @@ export function BrowseStores() {
             {stores && stores.map((store) => (
               <div key={store.id}>
                 <h2>{store.name}</h2>
-                <img src={`EthBelgrade24TonCommerce/${store.image}`} height="100px" alt={store.name} />
-                <img src={`./EthBelgrade24TonCommerce/${store.image}`} height="100px" alt={store.name} />
                 <img src={`/EthBelgrade24TonCommerce/${store.image}`} height="100px" alt={store.name} />
                 <p>{store.description}</p>
                 <Link to={`/stores/${store.id}`}>View Products</Link>

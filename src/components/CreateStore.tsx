@@ -247,7 +247,7 @@ export function CreateStore() {
               <h4>{store?.name}</h4>
               <button onClick={toggleActive}>{store.active ? 'Deactivate' : 'Activate'}</button>
               <p>{store.description}</p>
-              <img src={store.image} height="100px" alt={store.name} />
+              <img src={`/EthBelgrade24TonCommerce/${store.image}`} height="100px" alt={store.name} />
               {store.active && (
                 <form onSubmit={submitProduct} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <label>
@@ -277,7 +277,7 @@ export function CreateStore() {
               <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                 {products.map((product) => (
                   <div key={product.id} style={{ flex: '1 0 21%', margin: '1%', border: '1px solid #ccc', padding: '1em' }}>
-                    <img src={product.image} height="100px" alt={product.name} />
+                    <img src={`/EthBelgrade24TonCommerce/${product.image}`} height="100px" alt={product.name} />
                     <h2>{product.name}</h2>
                     <p>{product.description}</p>
                     <p>{product.price}</p>
